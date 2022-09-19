@@ -11,7 +11,7 @@ export default function PrereqFilter() {
     //If I select 160 too, I will get courses a CIS 160 prereq OR a CIS 120 prereq
 
     const [open, setOpen] = useState(false);
-    const {tags, allCoursePrereqsColors} = useContext(AppContext);
+    const {tags, allCoursePrereqs} = useContext(AppContext);
 
     //Storing all course prereq names
     const allCoursePrereqNames = ['CIS 120','CIS 160','CIS 240','CIS 110','ESE 112','CIS 262','CIS 320',
@@ -23,10 +23,9 @@ export default function PrereqFilter() {
             <div className='options'>
                 {open && allCoursePrereqNames.map((str) => {
                     let color = 'grey'
-                    if (allCoursePrereqsColors[str] !== undefined) {
-                        color = allCoursePrereqsColors[str]
+                    if (allCoursePrereqs[str] !== undefined) {
+                        color = allCoursePrereqs[str]
                     }
-                    
                     return <DropdownElement name={str} style={{backgroundColor: color}} isSelected={tags.includes(str) ? true : false}/>
                 })}
             </div>

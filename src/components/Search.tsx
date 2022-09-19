@@ -3,7 +3,7 @@ import PrereqFilter from './PrereqFilter'
 
 export default function Search({handleSearchStringChange}:{handleSearchStringChange: (newSearchString:string) => any}) {
 
-    //Handles searchbar functionality
+    //Represents search/filter area, Handles searchbar functionality
     //NOT responsible for filtering results, Courses.tsx does that
 
     function handleChange(event: React.FormEvent<HTMLInputElement>) {

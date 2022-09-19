@@ -1,135 +1,70 @@
 # Frontend Challenge Fall '22
 
-Welcome to the Penn Labs Frontend Challenge!
+This platform allows you to 
 
-If you have already done this challenge, there's a [section below](https://www.notion.so/Frontend-Challenge-Fall-22-d6c03559ee1d4f1f9f56aa6836b7caba) for you. 
+1. See all courses
+2. Search courses by name/description/course number
+3. Filter courses by course prerequisites
+4. Add courses to cart
+5. Remove courses from cart
+6. Checkout
 
-In this challenge, you will be building a product called Penn Course Cart in React! The goal of this challenge is for you to demonstrate:
+## Files
 
-1. An eye for building intuitive, feature-rich user interfaces
-2. Ability to build products with minimal direction
-3. Ability to work within a set timeline
+1. **App.tsx**
 
-More concretely, you will build an interface where users can explore computer science courses added at Penn, can add them to a cart, and checkout.
+All the routes are defined here
 
-## Getting Started
+2. **AppRoot.tsx**
 
-1. Copy this [repository](https://github.com/pennlabs/frontend-challenge) to your own GitHub account by clicking the green "use this template" button. You will have to make a Github account if you don't already have one. **Be sure to create a private repository.** **You will be submitting a ZIP file at the end of the technical.**
-2. [Clone](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) the repository you just made to your own computer. 
+Is the root component for the entire app. Handles top-level functionality and states that children will need access to like the search bar string, tags selected, courses in the cart, etc. Rendered at the / route.
 
-```bash
-git clone https://github.com/pennlabs/frontend-challenge-f22.git
-```
+3. **Search.tsx**
 
-3. Make sure you have [Node](https://www.seas.upenn.edu/~cis197/development) installed.
+Allows search and filter. Manages the state of user input, but does not filter results based on it.
 
-4. Navigate to the cloned directory in the command line and run `yarn` or `npm install`
+4. **Courses.tsx**
 
-5. Run `yarn start` or `npm start`
+Filters courses based on user input (state changes from Search.tsx) and renders them in a grid. Filter and Search criteria are both combined to show results. Filtering based on prereqs is a OR relationship - if I select CIS 120, all courses with a prereq of that will show up. If I also select CIS 160, all courses with a prereq of 120 OR 160 will show up.
 
-**Note:** This project is bootstrapped with [Create React App (CRA)](https://github.com/facebook/create-react-app) using [Typescript](https://www.typescriptlang.org/), so hot-reloading has been configured. This means after you run `yarn start` or `npm start`, the application will be recompiled automatically after a file is edited.
+5. **Course.tsx**
 
-## General Structure
+Main functionality for each course. Renders basic data about the course based on data from the JSON file, allows add-to-cart functionality.
 
-We have provided minimal starter code with the following structure. 
+6. **PrereqFilter.tsx**
 
-```
-public/
-  index.html           Root HTML file for each page
+Handles rendering and stage management of the dropdown. Stores filter criteria like courses selected in the dropdown but does not filter it - Courses.tsx does that. 
 
-src/                   Where the JS logic is
-  components/          Contains all React components
-    Cart.tsx           Basic component for the course cart
-    Courses.tsx        Basic component for rendering courses
-    Nav.tsx            Basic component for the navbar
-    ...                Feel free to add other components
+7. **DropDownElement.tsx**
 
-  data/                Contains data rendered by the components
-    courses.json       Contains information on CIS courses at Penn
+Renders a dropdown element. Handles clicking and color functionality, updates global state with new tags selected.
 
-  App.css              CSS for the app
-  App.tsx              Root component for the app
-  index.tsx            Renders the React app
-  ...
-```
+8. **Cart.tsx**
 
-## Features
+Handles all courses in the cart. Renders children CartCourse elements.
 
-Your application should implement the following features. 
+9. **CartCourse.tsx**
 
-1. **Explore Courses**
-    
-    If you view `src/components/Courses.js`,  you'll see that it is rendering some of the courses data from `src/data/courses.json` What you need to do is design a more robust way to display this courses information. You should display all information contained in the JSON — though put some thought into how to go about doing this. For example, you might only want to show the description once the user clicks on the course.
-    
-2. **Search and Filter**
-    
-    At the minimum, the user should be able to:
-    
-    - Type into a search bar to find courses by title and description
-    - Filter courses based on number
-3. **Add courses to your cart**
-    - A user should be able to add a subset of these courses to their cart. The user should not be able to add more than 7 courses to their cart.
-    - When a user adds a course, this addition should be reflected in:
-        - How that cart is rendered
-        - How that course is rendered (e.g. there should not still be a button to add that course to the cart, and maybe the text should be grayed out)
-4. **Checkout cart**
-    - Allow users to "checkout" their current cart, which takes the user to a new page, containing a "receipt" with the courses they checked out with. This should be implemented with routing, eg. with [React Router](https://reactrouter.com/en/main). The new page **must** show a different URL in the address bar and get the courses in the receipt using URL or query parameters.
-5. **View cart**
-    - The user should be able to click a button to view their cart.
-        - If the cart has no items in it, tell the user that their cart is empty.
-        - If the cart has courses in it, display the courses and relevant information about them.
-6. **Additional features**
-    
-    If you finish early, feel free to add an additional feature! Here are some ideas.
-    - Let users rank courses in order of preference using a drag and drop menu
-    - Integrate data from the Penn Courses server
-        - Note that we added the line `"proxy": "[https://penncourseplan.com](https://penncourseplan.com/)"` to `package.json`. This proxy will allow you to make requests to the Penn Courses backend without running into CORS issues.
-        - The [“Retrieve Course” endpoint](https://penncourseplan.com/api/documentation/#tag/PCx-Course/operation/Retrieve%20Course) should have all the data you need to add information for a specific course, but you are welcome to use any endpoint that doesn’t require authentication.
-        - Tip: use semesters from Spring 2022 and earlier - they will have 3-digit course codes that match the `courses.json` data.
-        - Example:
-    
-        ```jsx
-        fetch('/api/base/2022A/courses/CIS-120/')
-          .then(res => res.json())
-          .then(console.log);
-        ```
-7. **Code quality**
-    
-    These items are totally optional, but a great opportunity to demonstrate your engineering skills!
-    
-    - Turn on Typescript’s `strictNullChecks` and `noImplicitAny`
-    - Add a [linter](https://eslint.org/)
-    - Add unit or integration tests
+Courses currently in the cart. Manages remove from cart functionality.
 
-## Additional Tips
+10. **Checkout.tsx**
 
-- For styling, use whatever you want:
-    - CSS frameworks (Bulma, Bootstrap)
-    - CSS files (or SCSS)
-    - CSS modules
-    - CSS-in-JS
-    - `styled-components`
-- For state management, you have several options:
-    - Vanilla react state, props and [context managers](https://reactjs.org/docs/context.html)
-    - [Redux](https://redux.js.org/)
-    - [SWR](https://swr.vercel.app/)
-- For navigation:
-    - React Router
+Page displayed when user checks out, shows courses bought, and a link to go back to the home page.
 
-### **Getting help**
+11. **CheckoutCourse.tsx**
 
-If you have any questions about the project or need some help, send an email to contact@pennlabs.org!
+Courses currently in checkout. 
 
-### **Repeat applicants**
+12. **Nav**
 
-First off, thanks so much for your continued interest in Labs. We've accomplished a lot in the past year and have plans for more great products and features which need new developers to tackle them—so fingers crossed!
+Made no changes to this
 
-At Labs we don't just build new products, we also maintain legacy code bases and year over year push out new and improved versions. [Penn Course Review](https://penncoursereview.com/) and the [Common Funding Application](https://penncfa.com/) are two great examples.
 
-That said, please note the differences between the current challenge and previous challenge, as we constantly update our challenge between semesters in accordance with the submissions we review and applicants' feedback. In line with this, we want you to take your submission from when you last applied, update your code, and take it to the next level with new features and data. Be deliberate with your implementation decisions, architecture, and documentation such that if someone else opens your code 6 months from now they'll be able to pick up right where you left off. We're excited to see what you come up with.
+### **Notes**
 
-## Submission
+Had issues with GitHub, so had to clone again, and forgot to add node modules in the process. In case it is not there in the zip file, the only additional dependency I am using is react-router-dom.
 
-You should have created a private copy of the template repository we gave you. To get a ZIP file that you can submit on the submission form, push all your code to GitHub, click the green "Code" dropdown, and then click "Download ZIP". You can then upload this to our submission form.
+On some cards, the buttons to add to cart and learn more may be slightly above or below their normal position, which has to do with using webkit functionality. Was not able to figure out how to fix this consistently in the limited time frame.
 
-Please do NOT zip your code from your local computer, as that will package a large number of unnecessary files from the node_modules folder - if the submission is 1GB, something is wrong!
+Was slightly inconsistent with types in .tsx - types through many errors while I was building this and hence I used the any type some places to get around it because of the limited time frame. Can definitely resolve this small issue given more time.
+

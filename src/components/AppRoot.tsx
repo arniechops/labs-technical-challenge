@@ -9,7 +9,7 @@ import courses from '../data/courses.json'
 
 export const AppContext = React.createContext<null|any>(null);
 
-//Root component for the entire app. 
+//Root component for the entire app. This is is responsive to changes in window size for different computers
 
 export default function AppRoot({handleCheckout}: {handleCheckout: any}) {
 
