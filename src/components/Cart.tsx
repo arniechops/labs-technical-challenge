@@ -1,14 +1,32 @@
-const Cart = () => (
-  <div style={{
-    border: '1px solid rgba(0, 0, 0, 0.1)',
-    padding: '1rem',
-    marginBottom: '1.5rem',
-    borderRadius: '4px',
-  }}>
-    <h4>Course Cart</h4>
+import React, { useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from './AppRoot';
+import CartCourse from './CartCourse'
 
-    <p>Your cart is currently empty!</p>
-  </div>
-)
+export default function Cart({courses}: {courses: any[]}) {
+  const {handleCheckout, cartCourses} = useContext(AppContext);
+  const navigate = useNavigate()
 
-export default Cart;
+  function handleClick() {
+    navigate('/checkout', {state: {cartCourses}})
+  }
+
+  return (
+      <>
+        <div className='cart-container'>
+          <div className='cart'>
+            <h2>
+              Cart
+            </h2>
+            {courses.length === 0 && <p>Your cart is empty!</p>}
+            {courses.map((c) => {
+              return <CartCourse course={c}/>
+            })}
+            {courses.length !== 0 && 
+                <button className='btn btn-purple' onClick={handleClick}>Checkout</button>
+            }
+          </div>
+        </div>
+    </>
+  )
+}

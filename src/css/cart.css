@@ -1,0 +1,63 @@
+.cart-course-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+    padding: 0px 20px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    padding: 10px 15px;;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: inherit;
+    color: white;
+}
+
+.btn-yellow {
+    background-color: #ffae42;
+    margin-right: 20px;
+}
+
+.btn-yellow:hover {
+    cursor: pointer;
+    background-color: #d7881f;
+}
+
+.btn-remove {
+    background-color: #d42222;
+}
+
+.btn-remove:hover {
+    cursor: pointer;
+    background-color: #ac1a1a;
+}
+
+.cart {
+    border-radius: 10px;
+    border: 1px rgb(207, 207, 207) solid;
+    width: 75%;
+    padding: 20px 40px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.cart-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-purple {
+    background-color: #9022d4;
+    margin-top: 10px;
+}
+
+.btn-purple:hover {
+    cursor: pointer;
+    background-color: #68139d;
+}
