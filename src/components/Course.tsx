@@ -12,17 +12,23 @@ export interface CourseComponent {
 }
 
 export default function Course(props: CourseComponent) {
+
+    //Handles all functionality of a single course component
+
+    //Setting state
     const {dept, number, title, description, prereqs} = props;
 
     const {handleSelectCourse, handleCartAdd, cartCourses, allCoursePrereqs} = useContext(AppContext);
     const [inCart, setInCart] = useState(false);
 
+    //Changes the setInCart boolean when the cart changes to check how to color the button
     useEffect(() => {
         setInCart(cartCourses.find((c:any) => c.number === number))
     }, [cartCourses])
 
     let coursePrereqs: string[] = []
 
+    //Gets the course prereqs - I realized that course names are about 7-11 in length
     if (prereqs !== undefined) {
         coursePrereqs = prereqs.filter((str) => str.length <= 12)
     }

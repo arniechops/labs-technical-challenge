@@ -5,16 +5,22 @@ import Course from './Course';
 
 export default function Courses({searchString}:{searchString: string}) {
 
+  //Stores all functionality for the the list of all courses, .i.e the course grid
+
+  //Initially, show all courses
   useEffect(() => {
     filteredCourses = courses;
   }, [])
   
   const {tags} = useContext(AppContext);
+
+  //Filter results based on search bar
   const displayedCourses = courses.filter((c) => c.title.toLowerCase().indexOf(searchString.toLowerCase()) !== -1 || 
     c.number.toString().indexOf(searchString) !== -1 ||
     c.description.indexOf(searchString) !== -1
   )
 
+  //Filter results based on prereq selected
   const filteredCoursesByPrereq = courses.filter((c) => {
     if (tags.length === 0) {
       return true;
@@ -29,11 +35,8 @@ export default function Courses({searchString}:{searchString: string}) {
     return false
   })
 
+  //Display only the ones that show up in both
   let filteredCourses = displayedCourses.filter(value => filteredCoursesByPrereq.includes(value));
-  // if (filteredCourses.length == 0) {
-  //   filteredCourses = courses;
-  // }
-
 
   return (
     <div className='course-grid-container'>

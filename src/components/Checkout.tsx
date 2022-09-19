@@ -4,7 +4,10 @@ import CheckoutCourse from './CheckoutCourse'
 import '../css/style.css'
 
 export default function Checkout() {
-  
+
+  //The checkout page that gets displayed at the /checkout endpoint
+
+  //Using hooks to navigate away from this page, useLocation helps me pass data between pages at different routes
   const location = useLocation();
   const courses = location.state['cartCourses'];
   const navigate = useNavigate()

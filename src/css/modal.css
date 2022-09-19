@@ -29,6 +29,10 @@
     border-radius: 100%;
 }
 
+.btn-cross:hover {
+    cursor: pointer
+}
+
 .cross-listed-row {
     margin-bottom: 5px;
 }

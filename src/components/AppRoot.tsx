@@ -9,8 +9,11 @@ import courses from '../data/courses.json'
 
 export const AppContext = React.createContext<null|any>(null);
 
+//Root component for the entire app. 
+
 export default function AppRoot({handleCheckout}: {handleCheckout: any}) {
 
+    //Setting local states
     const [searchString, setSearchString] = useState("");
     const [selectedCourseNumber, setSelectedCourseNumber] = useState<number>();
     const [cartCourses, setCartCourses] = useState<any[]>([]);
@@ -22,6 +25,7 @@ export default function AppRoot({handleCheckout}: {handleCheckout: any}) {
         [x: string]: string;
     }
 
+    //json file to color the courses
     const allCoursePrereqs : JSONObject = {
         'CIS 120': '#34568b',
         'CIS 160': '#ff6f61',
@@ -38,14 +42,17 @@ export default function AppRoot({handleCheckout}: {handleCheckout: any}) {
         'PHYS 151': '#dc793e'
     }
 
+    //Handles a change in the search bar string
     function handleSearchStringChange(newSearchString: string) {
       setSearchString(newSearchString)
     }
 
+    //Handles the selected course for the modal window to open
     function handleSelectCourse(code: number) {
         setSelectedCourseNumber(code)
     }
 
+    //Handles adding a course to cart
     function handleCartAdd(code: number) {
         const newCourse = courses.find(c => c.number === code)
         if (!cartCourses.includes(newCourse)) {
@@ -53,12 +60,12 @@ export default function AppRoot({handleCheckout}: {handleCheckout: any}) {
         }
     }
 
+    //Handles removing a course from cart
     function handleCartRemove(code: number) {
         setCartCourses(cartCourses.filter(c => c.number !== code))
     }
 
-    // Tags
-
+    //Handle course prerequisite tags
     function handleTagSelect(tag: string) {
         setTags([...tags, tag])
     }
@@ -67,6 +74,7 @@ export default function AppRoot({handleCheckout}: {handleCheckout: any}) {
         setTags(tags.filter(t => tag !== t))
     }
 
+    //Passes a context to all children so repeated passing through props and state is not necessary
     const appContextValue = {
         handleSearchStringChange, 
         handleSelectCourse,
@@ -79,17 +87,6 @@ export default function AppRoot({handleCheckout}: {handleCheckout: any}) {
         handleCheckout,
         allCoursePrereqs
     }
-
-    let testCourse = {
-        "dept": "CIS",
-        "number": 461,
-        "title": "Advanced Renderin",
-        "prereqs": [
-          "Working knowledge of C++ programming",
-          "Knowledge of vector geometry"
-        ],
-        "description": "This course is designed to provide a comprehensive  overview to computer graphics techniques in 3D modeling, image synthesis, and rendering. Topics   cover: geometric transformations, geometric algorithms, software systems, 3D object models (surface, volume and implicit), visible surface algorithms, image synthesis, shading, mapping, ray tracing, radiosity, global illumination, sampling, anti-aliasing, Monte Carlo path tracing, and photonmapping. Prerequisites: A working knowledge of C++ programming isrequired (one year programming experience in general). Knowledge of vector geometry is useful."
-      }
 
   return (
     <AppContext.Provider value={appContextValue}>

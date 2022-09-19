@@ -3,9 +3,14 @@ import { AppContext } from './AppRoot'
 import '../css/style.css'
 
 export default function ModalComponent({course}: {course:any}) {
+
+    //Handles the modal component that pops up when the user clicks 'Learn More' on a course
+
+    //Setting state
     const {handleSelectCourse, allCoursePrereqs} = React.useContext(AppContext)
     const {title, description, prereqs} = course;
     
+    //Bifuracted prerequisites based on length of string - some prerequisites are courses and others are suggestions
     let coursePrereqs: string[] = []
     let otherPrereqs: string[] = []
 
@@ -15,6 +20,7 @@ export default function ModalComponent({course}: {course:any}) {
     }
 
 
+    //Shows cross-listed courses too, if any
   return (
     <div className='modal-back'>
         <div className='modal-card'>
@@ -47,8 +53,6 @@ export default function ModalComponent({course}: {course:any}) {
                     <span className='span-bold'>Other Prereqs : &nbsp; {otherPrereqs.join(' ,')}</span>
                 </div>}
                 <p>{description}</p>
-            </div>
-            <div className='modal-footer'>
             </div>
         </div>
     </div>

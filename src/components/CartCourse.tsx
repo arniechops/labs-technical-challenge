@@ -3,8 +3,10 @@ import { AppContext } from './AppRoot';
 import '../css/style.css'
 
 export default function CartCourse({course}: {course: any}) {
+
+    //Component to display a course in the cart
+    
     const {title, number} = course
-    console.log(title)
     const {handleCartRemove} = useContext(AppContext);
     return (
     <div className='cart-course-card'>

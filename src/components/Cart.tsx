@@ -4,9 +4,12 @@ import { AppContext } from './AppRoot';
 import CartCourse from './CartCourse'
 
 export default function Cart({courses}: {courses: any[]}) {
+
+  //Responsible for rendering a cart on the top of the screens
   const {handleCheckout, cartCourses} = useContext(AppContext);
   const navigate = useNavigate()
 
+  //Handles routing using useNavigate hook
   function handleClick() {
     navigate('/checkout', {state: {cartCourses}})
   }

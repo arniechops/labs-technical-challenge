@@ -1,6 +1,9 @@
 import '../css/style.css'
 
 export default function CartCourse({course}: {course: any}) {
+
+    //Shows a course in Checkout section at /checkout
+
     const {title, number, dept} = course
     return (
     <>
