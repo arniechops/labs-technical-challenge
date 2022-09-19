@@ -70,5 +70,5 @@ Had issues with GitHub, so had to clone again, and forgot to add node modules in
 
 On some cards, the buttons to add to cart and learn more may be slightly above or below their normal position, which has to do with using webkit functionality. Was not able to figure out how to fix this consistently in the limited time frame.
 
-Was slightly inconsistent with types in .tsx - types through many errors while I was building this and hence I used the any type some places to get around it because of the limited time frame. Can definitely resolve this small issue given more time.
+Was slightly inconsistent with types in .tsx - had many type-related errors while I was building this since I am not very comfortable with tsx and hence I used the any type some places to get around it because of the limited time frame. Can definitely resolve this small issue given more time.
 
