@@ -55,9 +55,13 @@ Page displayed when user checks out, shows courses bought, and a link to go back
 
 Courses currently in checkout. 
 
-12. **Nav**
+12. **Nav.tsx**
 
 Made no changes to this
+
+13. **ModalComponent.tsx**
+
+Handles modal that pops up when Know more is clicked on a course. Shows full description, cross-listed courses and prereqs. Prereqs are bifuracted based on whether its a course or a suggestion - this is done by checking the length of the prereq string.
 
 
 ### **Notes**
