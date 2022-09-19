@@ -29,7 +29,7 @@ Filters courses based on user input (state changes from Search.tsx) and renders 
 
 5. **Course.tsx**
 
-Main functionality for each course. Renders basic data about the course based on data from the JSON file, allows add-to-cart functionality.
+Main functionality for each course. Renders basic data about the course based on data from the JSON file, allows add-to-cart functionality. Also navigates user to the cart whenever a new course is added.
 
 6. **PrereqFilter.tsx**
 

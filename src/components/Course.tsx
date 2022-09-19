@@ -55,6 +55,7 @@ export default function Course(props: CourseComponent) {
                 <button className={inCart ? 'btn-greyed' : 'btn btn-add'} onClick={()=>{
                     handleCartAdd(number)
                     setInCart(true)
+                    window.scrollTo(0, 0)
                 }}>{inCart ? 'In Cart' :' Add to Cart'}</button>
             </div>
         </div>
