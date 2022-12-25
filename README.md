@@ -63,12 +63,3 @@ Made no changes to this
 
 Handles modal that pops up when Know more is clicked on a course. Shows full description, cross-listed courses and prereqs. Prereqs are bifuracted based on whether its a course or a suggestion - this is done by checking the length of the prereq string.
 
-
-### **Notes**
-
-Had issues with GitHub, so had to clone again, and forgot to add node modules in the process. In case it is not there in the zip file, the only additional dependency I am using is react-router-dom.
-
-On some cards, the buttons to add to cart and learn more may be slightly above or below their normal position, which has to do with using webkit functionality. Was not able to figure out how to fix this consistently in the limited time frame.
-
-Was slightly inconsistent with types in .tsx - had many type-related errors while I was building this since I am not very comfortable with tsx and hence I used the any type some places to get around it because of the limited time frame. Can definitely resolve this small issue given more time.
-
